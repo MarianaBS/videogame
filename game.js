@@ -23,9 +23,9 @@
         iFood = new Image(),
         aEat = new Audio(),
         aDie = new Audio(),
-        buffer = null,
-        bufferCtx = null
-        /*bufferScale = 1,
+        buffer = null;
+        /*bufferCtx = null
+        bufferScale = 1,
         bufferOffsetX = 0,
         bufferOffsetY = 0;*/
 
