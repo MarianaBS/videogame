@@ -23,16 +23,28 @@
         iBody = new Image(),
         iFood = new Image(),
         aEat = new Audio(),
-        aDie = new Audio();
+        aDie = new Audio(),
+        lastUpdate = 0,
+        FPS = 0,
+        frames = 0,
+        acumDelta = 0;
 
-    window.requestAnimationFrame = (function () {
+    /*window.requestAnimationFrame = (function () {
         return window.requestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         function (callback) {
         window.setTimeout(callback, 17);
         };
-    }());
+    }());*/
+    window.requestAnimationFrame = (function () {
+        return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function (callback) {
+        window.setTimeout(callback, 17);
+        };
+        }());
     document.addEventListener('keydown', function (evt) {
         lastPress = evt.which;
         }, false);
@@ -188,6 +200,8 @@
         
         // Draw score
         ctx.fillText('Score: ' + score, 0, 10);
+
+        ctx.fillText('FPS: ' + FPS, 0, 20);
         
         // Draw walls
         /*ctx.fillStyle = '#999';
@@ -298,9 +312,27 @@
         window.requestAnimationFrame(repaint);
         paint(ctx);
     }
-    function run() {
+   /* function run() {
         setTimeout(run, 50);
         act();
+    }*/
+    function run(){
+        window.requestAnimationFrame(run);
+        var now = Date.now(),
+        deltaTime = (now - lastUpdate) / 1000;
+        if (deltaTime > 1) {
+            deltaTime = 0;
+        }
+        lastUpdate = now;
+        frames += 1;
+        acumDelta += deltaTime;
+        if (acumDelta > 1) {
+            FPS = frames;
+            frames = 0;
+            acumDelta -= 1;
+        }
+        act();
+        paint(ctx);
     }
     function init() {
         // Get canvas and context
