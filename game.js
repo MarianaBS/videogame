@@ -55,6 +55,15 @@
     function random(max) {
         return ~~(Math.random() * max);
     }
+
+    function resize(){
+        var w = window.innerWidth / canvas.width;
+        var h = window.innerHeight / canvas.height;
+        var scale = Math.min(h, w);
+
+        canvas.style.width = (canvas.width * scale) + 'px';
+        canvas.style.height = (canvas.height * scale) + 'px';
+    }
     function canPlayOgg() {
         var aud = new Audio();
         if (aud.canPlayType('audio/ogg').replace(/no/, '')) {
@@ -359,8 +368,10 @@
         }
         food = new Rectangle(80, 80, 10, 10);
         // Start game
+        resize();
         run();
         repaint();
     }
+    window.addEventListener('resize', resize, false);
     window.addEventListener('load', init, false);
 }(window));
