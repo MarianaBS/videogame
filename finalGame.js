@@ -312,6 +312,10 @@
                 food.x = random(canvas.width / 10 - 1) * 10;
                 food.y = random(canvas.height / 10 - 1) * 10;
                 aEat.play();
+                fetch("https://jsonplaceholder.typicode.com/"+ score)
+                    .then(response => response.json())
+                    .then(json => console.log('Score sent successfully'))
+                    .catch(error => console.log('Error trying to send the score'));
             }
             // Extra Intersects
             if (body[0].intersects(extra)) {
@@ -319,6 +323,7 @@
                 extra.x = random(canvas.width / 10 - 1) * 10;
                 extra.y = random(canvas.height / 10 - 1) * 10;
                 aExtra.play();
+               
             }
             // Wall Intersects
             for (i = 0, l = wall.length; i < l; i += 1) {
