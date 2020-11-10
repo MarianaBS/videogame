@@ -162,6 +162,7 @@
         aExtra.src='assets/extraSound.mp3';
         // Create food
         food = new Rectangle(80, 80, 10, 10);
+        //Create extra
         extra= new Rectangle(50,50,10,10);
         // Create walls
         wall.push(new Rectangle(50, 50, 10, 10));
@@ -312,10 +313,6 @@
                 food.x = random(canvas.width / 10 - 1) * 10;
                 food.y = random(canvas.height / 10 - 1) * 10;
                 aEat.play();
-                fetch("https://jsonplaceholder.typicode.com/"+ score)
-                    .then(response => response.json())
-                    .then(json => console.log('Score sent successfully'))
-                    .catch(error => console.log('Error trying to send the score'));
             }
             // Extra Intersects
             if (body[0].intersects(extra)) {
@@ -323,6 +320,10 @@
                 extra.x = random(canvas.width / 10 - 1) * 10;
                 extra.y = random(canvas.height / 10 - 1) * 10;
                 aExtra.play();
+                fetch("https://jsonplaceholder.typicode.com/"+ score)
+                .then(response => response.json())
+                .then(json => console.log('Score sent successfully'))
+                .catch(error => console.log('Error trying to send the score'));
                
             }
             // Wall Intersects
@@ -331,7 +332,10 @@
                     food.x = random(canvas.width / 10 - 1) * 10;
                     food.y = random(canvas.height / 10 - 1) * 10;
                 }
-            
+                if(extra.intersects(wall[i])){
+                    extra.x = random(canvas.width / 10 - 1) * 10;
+                    extra.y = random(canvas.height / 10 - 1) * 10;
+                }
                 if (body[0].intersects(wall[i])) {
                     gameover = true;
                     pause = true;
