@@ -320,7 +320,7 @@
                 extra.x = random(canvas.width / 10 - 1) * 10;
                 extra.y = random(canvas.height / 10 - 1) * 10;
                 aExtra.play();
-                fetch("https://jsonplaceholder.typicode.com/"+ score)
+                fetch(`https://jsonplaceholder.typicode.com/${score}`)
                 .then(response => response.json())
                 .then(json => console.log('Score sent successfully'))
                 .catch(error => console.log('Error trying to send the score'));
