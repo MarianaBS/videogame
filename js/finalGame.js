@@ -317,9 +317,16 @@
             // Extra Intersects
             if (body[0].intersects(extra)) {
                 score += 3;
-                extra.x = random(canvas.width / 10 - 1) * 10;
-                extra.y = random(canvas.height / 10 - 1) * 10;
                 aExtra.play();
+                extra.y=-10;
+                extra.x=-10;
+                setTimeout(function(){
+                    extra.x = random(canvas.width / 10 - 1) * 10;
+                    extra.y = random(canvas.height / 10 - 1) * 10;}
+                    , 8000);
+                
+                //extra.x = random(canvas.width / 10 - 1) * 10;
+                //extra.y = random(canvas.height / 10 - 1) * 10;
                 fetch(`https://jsonplaceholder.typicode.com/${score}`)
                 .then(response => response.json())
                 .then(json => console.log('Score sent successfully'))
@@ -347,7 +354,7 @@
                 if (body[0].intersects(body[i])) {
                     gameover = true;
                     pause = true;
-                    //aDie.play();
+                    aDie.play();
                     addHighscore(score);
                 }
             }
