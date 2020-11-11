@@ -324,7 +324,6 @@
                     extra.x = random(canvas.width / 10 - 1) * 10;
                     extra.y = random(canvas.height / 10 - 1) * 10;}
                     , 8000);
-                
                 //extra.x = random(canvas.width / 10 - 1) * 10;
                 //extra.y = random(canvas.height / 10 - 1) * 10;
                 fetch(`https://jsonplaceholder.typicode.com/${score}`)
